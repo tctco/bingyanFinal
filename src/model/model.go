@@ -16,7 +16,7 @@ var DB *sql.DB
 
 func DBInit() error {
 	var err error
-	DB, err = sql.Open("mysql", "root:@/onlineshopping?charset=utf8")
+	DB, err = sql.Open("mysql", "root:123456@/onlineshopping?charset=utf8")
 	return err
 }
 
