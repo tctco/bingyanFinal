@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  market:
+    image: golang:latest
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      - ./log:/app/log
+      - ./src:/app/src
+    ports:
+      - "9990:8080"
+    environment:
+      - TZ=Asia/Shanghai
+
+      - GO111MODULE=on
+      - GOPROXY=https://goproxy.io
+    container_name: market
+    command: bash -c "cd /app/src && go run main.go"
+    depends_on:
+      - mysql
+
+  mysql:
+      image: mysql:5.7
+      container_name: market-mysql
+      ports:
+          - '52013:3306'
+      volumes:
+          - ./data:/var/lib/mysql
+          - ./mysql/conf:/etc/mysql/mysql.conf.d
+  
+      command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      environment:
+          - MYSQL_ROOT_PASSWORD=123456
+          - MYSQL_USER=user
+          - MYSQL_PASSWORD=123456
+
