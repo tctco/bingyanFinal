@@ -9,6 +9,7 @@ import (
 
 func RouterInit(authMiddleware *jwt.GinJWTMiddleware) *gin.Engine {
 	r := gin.Default()
+	r.Use(controller.Cors())
 	loginInit(r, authMiddleware)
 	freeAccessInit(r)
 	staticFilesInit(r)

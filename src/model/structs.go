@@ -57,10 +57,10 @@ type ProductJSON struct {
 }
 
 type SearchJSON struct {
-	PageNo   int    `json:"page" binding:"required"`
+	PageNo   int    `json:"page"`
 	PageSize int    `json:"limit" binding:"required"`
-	Category int    `json:"category" binding:"required"`
-	Keyword  string `json:"keyword" binding:"required"`
+	Category int    `json:"category"`
+	Keyword  string `json:"keyword"`
 }
 
 type MyCommodity struct {
@@ -77,4 +77,9 @@ type CollectionJSON struct {
 type Message struct {
 	SenderID int
 	Info     string
+}
+
+type LoginJSON struct {
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"golang.org/x/crypto/bcrypt"
+	"onlineShopping/settings"
 	"path/filepath"
 	"strconv"
 	"time"
@@ -16,7 +17,7 @@ var DB *sql.DB
 
 func DBInit() error {
 	var err error
-	DB, err = sql.Open("mysql", "root:123456@/onlineshopping?charset=utf8")
+	DB, err = sql.Open("mysql", settings.DataBasePath)
 	return err
 }
 
